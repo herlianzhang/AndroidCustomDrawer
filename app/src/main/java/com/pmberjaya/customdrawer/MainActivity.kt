@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.pmberjaya.customdrawer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +54,13 @@ class MainActivity : AppCompatActivity() {
             drawerElevation = 0f
             addDrawerListener(actionBarDrawerToggle)
         }
+    }
+
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
     }
 
     fun convertToDp(context: Context, size: Float) =
